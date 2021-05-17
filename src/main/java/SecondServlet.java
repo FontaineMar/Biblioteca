@@ -10,21 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Model.Utente;
+import Model.Libro;
+
+
 
 /**
- * Servlet implementation class FirstServlet
+ * Servlet implementation class SecondServlet
  */
-@WebServlet("/FirstServlet")
-public class FirstServlet extends HttpServlet {
+@WebServlet("/SecondServlet")
+public class SecondServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public FirstServlet() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public SecondServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,20 +43,23 @@ public class FirstServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		String nickName = request.getParameter("username");
-		String pwd = request.getParameter("password");
-		String type = request.getParameter("type");
 
-		String destination = "login.jsp";
+		String isbn = request.getParameter("isbn");
+		String titolo = request.getParameter("title");
+		String autore = request.getParameter("author");
+		String genere = request.getParameter("genre");
+
+
+		String destination = "index.jsp";
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);
 
 		
 		ArrayList v = new ArrayList();
-		Utente u = new Utente(nickName,pwd,type);
-		v.add(u);
+		Libro l = new Libro(isbn,titolo,autore,genere);
+		v.add(l);
 
-	    request.setAttribute("utenti", v);
+	    request.setAttribute("libri", v);
 
 
 		requestDispatcher.forward(request, response);

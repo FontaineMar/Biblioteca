@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="Model.Libro"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,7 @@
 <body>
 	<div class="container">
 		<div class="row justify-content-center">
-			<form class="col-6" action="FirstServlet" method="post">
+			<form class="col-6" action="SecondServlet" method="post">
 				<h1>Ciao benvenuto registra il tuo libro</h1>
 				<div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">Titolo</label>
@@ -42,7 +44,7 @@
 				</div>
 
 				<div class="mb-3">
-					<button type="submit" class="btn btn-primary btn-md" name="azione">Registrati</button>
+					<button type="submit" class="btn btn-primary btn-md" name="azione">Inserisci libro</button>
 				</div>
 			</form>
 		</div>
