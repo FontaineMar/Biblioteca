@@ -29,17 +29,14 @@
 					<input type="password" class="form-control"
 						id="exampleFormControlInput1" name="password">
 				</div>
-				<div class="mb-3">
-					<label for="exampleFormControlInput1" class="form-label">Conferma
-						password</label> <input type="password" class="form-control"
-						id="exampleFormControlInput1" name="password">
-				</div>
 				<div>
-					<input type="radio" id="contactChoice1" name="type"
-						value="0" checked> <label for="contactChoice1">Utente</label>
-
-					<input type="radio" id="contactChoice2" name="type"
-						value="1"> <label for="contactChoice2">Amministratore</label>
+					<input type="radio" id="contactChoice1" name="type" value="0"
+						checked> <label for="contactChoice1">Utente</label> <input
+						type="radio" id="contactChoice2" name="type" value="1"> <label
+						for="contactChoice2">Amministratore</label>
+				</div>
+				<div class="mb-3">
+					<button type="submit" class="btn btn-primary btn-md" name="azione">Registrati</button>
 				</div>
 				<!-- <div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">Email

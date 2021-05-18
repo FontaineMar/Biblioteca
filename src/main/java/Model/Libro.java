@@ -1,11 +1,11 @@
 package Model;
 
 public class Libro {
-
+	
+	private String isbn;
 	private String title;
 	private String author;
 	private String genre;
-	private String isbn;
 
 	public Libro () {}
 	
@@ -50,4 +50,6 @@ public class Libro {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
+
+	
 }

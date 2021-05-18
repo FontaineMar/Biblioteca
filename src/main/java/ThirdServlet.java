@@ -1,33 +1,28 @@
 
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import Model.Libro;
-
-
+import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 /**
- * Servlet implementation class SecondServlet
+ * Servlet implementation class ThirdServlet
  */
-@WebServlet("/SecondServlet")
-public class SecondServlet extends HttpServlet {
+@WebServlet("/ThirdServlet")
+public class ThirdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public SecondServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ThirdServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,26 +38,23 @@ public class SecondServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		String isbn = request.getParameter("isbn");
-		String titolo = request.getParameter("title");
-		String autore = request.getParameter("author");
-		String genere = request.getParameter("genre");
+		String userName = request.getParameter("username");
+		String pwd = request.getParameter("password");
+		String type = request.getParameter("type");
+
+		if( (userName.equals("ciccio")) && (pwd.equals("1234")) ) {
+			HttpSession session = request.getSession(true);
+			session.setAttribute("logged", "1");
+			
+			response.sendRedirect("index.jsp");
+			
+		}else {
+			//JOptionPane.showMessageDialog(null, "sceeeeem");
+			response.sendRedirect("login.jsp");
 
 
-		String destination = "index.jsp";
-		
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);
-
-		
-		ArrayList v = new ArrayList();
-		Libro l = new Libro(isbn,titolo,autore,genere);
-		v.add(l);
-
-	    request.setAttribute("libri", v);
-
-
-		requestDispatcher.forward(request, response);
-
+		}
+		request.setAttribute("typeOut", type);
 	}
 
 }

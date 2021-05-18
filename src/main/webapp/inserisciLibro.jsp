@@ -13,6 +13,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% String logged = (String)request.getSession().getAttribute("logged"); out.println(logged); 
+if(logged == null){
+	response.sendRedirect("login.jsp");
+
+}%>
 	<div class="container">
 		<div class="row justify-content-center">
 			<form class="col-6" action="SecondServlet" method="post">

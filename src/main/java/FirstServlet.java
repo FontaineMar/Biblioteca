@@ -1,5 +1,4 @@
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,45 +18,54 @@ import Model.Utente;
 public class FirstServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public FirstServlet() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public FirstServlet() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		String nickName = request.getParameter("username");
+		// doGet(request, response);
+		String userName = request.getParameter("username");
 		String pwd = request.getParameter("password");
 		String type = request.getParameter("type");
 
-		String destination = "login.jsp";
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);
-
-		
-		ArrayList v = new ArrayList();
-		Utente u = new Utente(nickName,pwd,type);
-		v.add(u);
-
-	    request.setAttribute("utenti", v);
-
-
-		requestDispatcher.forward(request, response);
-
+		  String destination = "login.jsp";
+		  
+		  RequestDispatcher requestDispatcher =
+		  request.getRequestDispatcher(destination);
+		  
+		  
+		  
+		  
+		  ArrayList v = new ArrayList(); 
+		  Utente u = new Utente(userName,pwd,type);
+		  v.add(u);
+		  
+		  
+		  request.setAttribute("utenti", v);
+		  
+		  
+		  requestDispatcher.forward(request, response);
+		 
 	}
 
 }

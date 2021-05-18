@@ -15,6 +15,16 @@
 <body>
 	<div class="container">
 		<h1 class="col-10 ">Lista dei libri</h1>
+		<form method="post" action="ThirdServlet">
+			<div class="mb-3">
+				<button type="submit" class="btn btn-primary btn-md" name="azione">Registrati</button>
+			</div>
+		</form>
+		
+		<%
+		if(request.getAttribute("typeOut").equals("1")){out.prinln("ok");}
+			%>
+		
 		<table class="table table-dark table-hover justify-content-center">
 			<thead>
 				<tr>
@@ -36,16 +46,17 @@
 					<td><%=libro.getGenre()%></td>
 					<td><%=libro.getIsbn()%></td>
 					<%
+					
 		   }
 
 		}
 		%>
-		
+
 				</tr>
 			</tbody>
 		</table>
-		
-			
+
+
 	</div>
 </body>
 </html>
