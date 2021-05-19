@@ -16,6 +16,10 @@
 </head>
 <body>
 	<div class="container">
+	<div class="row justify-content-center">
+<!-- 			<a href="registrati.jsp" class="btn btn-primary stretched-link">Registrati</a>
+ -->						 
+			</div>
 		<div class="row justify-content-center">
 			<form class="col-6" action="ThirdServlet" method="post">
 				<h1>Ciao accedi alla piattaforma</h1>
@@ -39,7 +43,12 @@
 					<button type="submit" class="btn btn-primary btn-md" name="azione">Accedi</button>
 				</div>
 			</form>
+		
 		</div>
+		<!-- <div class="row justify-content-center">
+			<h6>Non sei registrato? <a href="registrati.jsp" class="btn btn-primary stretched-link">Registrati</a></h6>
+						 
+			</div> -->
 	</div>
 </body>
 </html>

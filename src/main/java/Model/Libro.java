@@ -2,6 +2,7 @@ package Model;
 
 public class Libro {
 	
+	private int id;
 	private String isbn;
 	private String title;
 	private String author;
@@ -9,13 +10,13 @@ public class Libro {
 
 	public Libro () {}
 	
-	public Libro (String title, String author, String genre, String isbn) {
+	public Libro (int id ,String title, String author, String genre, String isbn) {
 		
 		this.title = title;
 		this.author = author;
 		this.genre = genre;
 		this.isbn = isbn;
-		
+		this.id = id;
 		
 	}
 
@@ -49,6 +50,14 @@ public class Libro {
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	

@@ -17,7 +17,7 @@
 <body>
 	<div class="container">
 		<div class="row justify-content-center">
-			<form class="col-6" action="FirstServlet" method="post">
+			<form class="col-6" action="ThirdServlet" method="post">
 				<h1>Ciao benvenuto registrati</h1>
 				<div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">Username</label>
@@ -35,7 +35,7 @@
 						type="radio" id="contactChoice2" name="type" value="1"> <label
 						for="contactChoice2">Amministratore</label>
 				</div>
-				<div class="mb-3">
+				<div class="mb-3 justify-content-center">
 					<button type="submit" class="btn btn-primary btn-md" name="azione">Registrati</button>
 				</div>
 				<!-- <div class="mb-3">

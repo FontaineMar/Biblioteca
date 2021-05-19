@@ -42,19 +42,33 @@ public class ThirdServlet extends HttpServlet {
 		String pwd = request.getParameter("password");
 		String type = request.getParameter("type");
 
-		if( (userName.equals("ciccio")) && (pwd.equals("1234")) ) {
-			HttpSession session = request.getSession(true);
-			session.setAttribute("logged", "1");
+		if( (userName.equals("ciccio")) && (pwd.equals("1234")) && (type.equals("1")) ) {
+			HttpSession oldSession = request.getSession(false);
+			if(oldSession != null) {
+				oldSession.invalidate();
+
+			}
+			HttpSession session = request.getSession();
+			session.setAttribute("admin", type);
+			response.sendRedirect("index1.jsp");
 			
-			response.sendRedirect("index.jsp");
+		}else if( (userName.equals("marco")) && (pwd.equals("1234")) && (type.equals("0")) ){
+			HttpSession oldSession = request.getSession(false);
+			if(oldSession != null) {
+				oldSession.invalidate();
+			}
+			HttpSession session = request.getSession();
+			session.setAttribute("user", type);
+			response.sendRedirect("index2.jsp");
 			
-		}else {
+			
+		}
+		else {
 			//JOptionPane.showMessageDialog(null, "sceeeeem");
 			response.sendRedirect("login.jsp");
 
 
 		}
-		request.setAttribute("typeOut", type);
 	}
 
 }

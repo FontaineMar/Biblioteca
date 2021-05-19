@@ -15,15 +15,7 @@
 <body>
 	<div class="container">
 		<h1 class="col-10 ">Lista dei libri</h1>
-		<form method="post" action="ThirdServlet">
-			<div class="mb-3">
-				<button type="submit" class="btn btn-primary btn-md" name="azione">Registrati</button>
-			</div>
-		</form>
 		
-		<%
-		if(request.getAttribute("typeOut").equals("1")){out.prinln("ok");}
-			%>
 		
 		<table class="table table-dark table-hover justify-content-center">
 			<thead>
@@ -35,11 +27,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% ArrayList libri = (ArrayList) request.getAttribute("libri");
-		if (libri != null) {
-
-			for(int i = 0; i < libri.size(); i++) {
-				Libro libro = (Libro) libri.get(i);%>
+				<% ArrayList listLibro = (ArrayList)request.getAttribute("libri");
+		if (listLibro != null) {
+			for (ArrayList listLibro : libro) {
+				
+			%>
 				<tr>
 					<td scope="row"><%=libro.getTitle()%></td>
 					<td><%=libro.getAuthor()%></td>
@@ -55,6 +47,8 @@
 				</tr>
 			</tbody>
 		</table>
+	    <a href="registrati.jsp" class="btn btn-primary stretched-link">LogOut</a></h6>
+		
 
 
 	</div>
