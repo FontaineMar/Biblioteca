@@ -15,8 +15,8 @@
 <body>
 	<div class="container">
 		<h1 class="col-10 ">Lista dei libri</h1>
-		
-		
+
+
 		<table class="table table-dark table-hover justify-content-center">
 			<thead>
 				<tr>
@@ -27,11 +27,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% ArrayList listLibro = (ArrayList)request.getAttribute("libri");
+				<% ArrayList listLibro = (ArrayList) request.getAttribute("libri");
 		if (listLibro != null) {
-			for (ArrayList listLibro : libro) {
-				
-			%>
+			for(int i = 0; i < listLibro.size(); i++) {
+				Libro libro = (Libro) listLibro.get(i); %>
 				<tr>
 					<td scope="row"><%=libro.getTitle()%></td>
 					<td><%=libro.getAuthor()%></td>
@@ -40,15 +39,22 @@
 					<%
 					
 		   }
+			
 
+		}else{
+		pageContext.forward("SecondServlet");
+		%>
+		
+			<%-- <jsp:forward page="SecondServlet"/> --%><%
 		}
 		%>
 
 				</tr>
 			</tbody>
 		</table>
-	    <a href="registrati.jsp" class="btn btn-primary stretched-link">LogOut</a></h6>
-		
+<!-- 		<a href="login.jsp" class="btn btn-primary stretched-link">Registrati</a>
+ -->		
+
 
 
 	</div>
