@@ -19,37 +19,41 @@
 
 
 		<table class="table table-dark table-hover justify-content-center">
-			<thead>
-				<tr>
-					<th scope="col">Isbn</th>
-					<th scope="col">Titolo</th>
-					<th scope="col">Autore</th>
-					<th scope="col">Genere</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% ArrayList listLibro = (ArrayList) request.getAttribute("libri");
-		if (listLibro != null) {
-			for(int i = 0; i < listLibro.size(); i++) {
-				Libro libro = (Libro) listLibro.get(i); %>
-				<tr>
-					<td scope="row"><%=libro.getTitle()%></td>
-					<td><%=libro.getAuthor()%></td>
-					<td><%=libro.getGenre()%></td>
-					<td><%=libro.getIsbn()%></td>
-					<%
-					
-		   }
+					<thead>
+						<tr>
+							<th scope="col">Isbn</th>
+							<th scope="col">Titolo</th>
+							<th scope="col">Autore</th>
+							<th scope="col">Genere</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+						ArrayList listLibro = (ArrayList) request.getAttribute("libri");
+						if (listLibro != null) {
+							for (int i = 0; i < listLibro.size(); i++) {
+								Libro libro = (Libro) listLibro.get(i);
+						%>
+						<tr>
+							<td scope="row" name=""><%=libro.getIsbn()%></td>
+							<td><%=libro.getTitle()%></td>
+							<td><%=libro.getAuthor()%></td>
+							<td><%=libro.getGenre()%></td>
+							
+							<%
+							}
 
-		}
-		%>
+							} else {
+							%>
 
-				</tr>
-			</tbody>
-		</table>
-<!-- 		<a href="login.jsp" class="btn btn-primary stretched-link">Registrati</a>
- -->		
+							<jsp:forward page="userView" />
+							<%
+							}
+							%>
+						</tr>
 
+					</tbody>
+				</table>
 	</div>
 </body>
 </html>

@@ -15,7 +15,7 @@ public class LibroDAOimpl implements LibroDAO{
 
 	@Override
 	public boolean insertLibro(Libro libro) throws SQLException {
-		String sql = "INSERT INTO book (isbn ,title, author, genre,) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO book (isbn ,title, author, genre) VALUES (?, ?, ?, ?)";
 		Connection jdbcConnection = DatabaseConnection.connect();
 
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
@@ -61,32 +61,38 @@ public class LibroDAOimpl implements LibroDAO{
 	}
 
 	@Override
-	public Libro getLibroByIsbn(String isbn) throws SQLException {
-		Libro libro = new Libro();
+	public List<Libro> getLibroByIsbn(String isbn) throws SQLException {
 		String sql = "SELECT * FROM book WHERE isbn = ?";
+		List<Libro> list = new ArrayList<Libro>();
+
 
 		Connection jdbcConnection = DatabaseConnection.connect();
 
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
 		statement.setString(1, isbn);
 
+
 		ResultSet resultSet = statement.executeQuery();
+		while(resultSet.next()) {
+			Libro libro = new Libro();
+			libro.setId(resultSet.getInt("id"));
+			libro.setTitle(resultSet.getString("title"));
+			libro.setIsbn(resultSet.getString("isbn"));
+			libro.setAuthor(resultSet.getString("author"));
+			libro.setGenre(resultSet.getString("genre"));
 
-		if (resultSet.next()) {
-			int id = resultSet.getInt("id");
-			String title = resultSet.getString("title");
-			String author = resultSet.getString("author");
-			String genre = resultSet.getString("genre");
+
+			list.add(libro);
 		}
-
 		resultSet.close();
 		statement.close();
 		DatabaseConnection.disconnect();
-		return libro;
+
+		return list;
 	}
 
 	@Override
-	public List<Libro> getLibro(String title) throws SQLException {
+	public List<Libro> getLibroTitle(String title) throws SQLException {
 		String sql = "SELECT * FROM book WHERE title = ?";
 		List<Libro> list = new ArrayList<Libro>();
 
@@ -100,7 +106,9 @@ public class LibroDAOimpl implements LibroDAO{
 		ResultSet resultSet = statement.executeQuery();
 		while(resultSet.next()) {
 			Libro libro = new Libro();
+			
 			libro.setId(resultSet.getInt("id"));
+			libro.setTitle(resultSet.getString("title"));
 			libro.setIsbn(resultSet.getString("isbn"));
 			libro.setAuthor(resultSet.getString("author"));
 			libro.setGenre(resultSet.getString("genre"));
@@ -118,22 +126,24 @@ public class LibroDAOimpl implements LibroDAO{
 
 
 	@Override
-	public List<Libro> getLibro(String title, String author) throws SQLException {
-		String sql = "SELECT * FROM book WHERE title = ? AND author= ?";
+	public List<Libro> getLibroAuthor(String author) throws SQLException {
+		String sql = "SELECT * FROM book WHERE author= ?";
 		List<Libro> list = new ArrayList<Libro>();
 
 		Connection jdbcConnection = DatabaseConnection.connect();
 
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-		statement.setString(1, title);
 		statement.setString(2, author);
 
 		ResultSet resultSet = statement.executeQuery();
 		while(resultSet.next()) {
 			Libro libro = new Libro();
 			libro.setId(resultSet.getInt("id"));
+			libro.setTitle(resultSet.getString("title"));
 			libro.setIsbn(resultSet.getString("isbn"));
+			libro.setAuthor(resultSet.getString("author"));
 			libro.setGenre(resultSet.getString("genre"));
+
 
 			list.add(libro);
 		}
@@ -163,14 +173,14 @@ public class LibroDAOimpl implements LibroDAO{
 			String title = resultSet.getString("title");
 			String author = resultSet.getString("author");
 			String genre = resultSet.getString("genre");
-			
+
 			Libro book = new Libro();
 			book.setId(id);
 			book.setIsbn(isbn);
 			book.setTitle(title);
 			book.setAuthor(author);
 			book.setGenre(genre);
-//			Book book = new Book(id, title, author, price);
+			//			Book book = new Book(id, title, author, price);
 			listBook.add(book);
 		}
 
@@ -198,10 +208,10 @@ public class LibroDAOimpl implements LibroDAO{
 		while(resultSet.next()) {
 			Libro libro = new Libro();
 			libro.setId(resultSet.getInt("id"));
+			libro.setTitle(resultSet.getString("title"));
 			libro.setIsbn(resultSet.getString("isbn"));
 			libro.setAuthor(resultSet.getString("author"));
-			libro.setTitle(resultSet.getString("title"));
-
+			libro.setGenre(resultSet.getString("genre"));
 			list.add(libro);
 		}
 
@@ -212,7 +222,7 @@ public class LibroDAOimpl implements LibroDAO{
 
 		return list;
 
-	
+
 	}
 
 	@Override
@@ -222,7 +232,7 @@ public class LibroDAOimpl implements LibroDAO{
 		Connection jdbcConnection = DatabaseConnection.connect();
 
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-		
+
 		statement.setString(1, libro.getIsbn());
 		statement.setString(2, libro.getTitle());
 		statement.setString(3, libro.getAuthor());
